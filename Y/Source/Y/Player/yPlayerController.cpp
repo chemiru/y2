@@ -35,10 +35,10 @@ void AyPlayerController::BeginPlay()
 	FInputModeGameOnly GameOnlyInputMode;
 	SetInputMode(GameOnlyInputMode);
 
-	yHudWidget = CreateWidget<UyHudWidget>(this, yHudWidgetClass);
+	/*yHudWidget = CreateWidget<UyHudWidget>(this, yHudWidgetClass);
 	if (yHudWidget)
 	{
 		yHudWidget->AddToViewport();
-	}
+	}*/
 
 }

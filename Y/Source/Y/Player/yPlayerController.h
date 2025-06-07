@@ -16,6 +16,10 @@ class Y_API AyPlayerController : public APlayerController
 
 public:
 	AyPlayerController();
+
+	void GameScoreChanged(int32 Score);
+	void GameCleared();
+	void GameOver();
 	
 protected:
 	virtual void BeginPlay() override;

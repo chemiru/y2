@@ -11,6 +11,7 @@
 #include "Data/yCh_DataAsset.h"
 #include "Ui/yHudWidget.h"
 #include "CharacterStat/yCharacterStatComponent.h"
+#include "Interface/YGameModeInterface.h"
 
 AyCh_Player::AyCh_Player()
 {
@@ -88,6 +89,12 @@ void AyCh_Player::SetDead()
 	if (PlayerController)
 	{
 		DisableInput(PlayerController);
+
+		IYGameModeInterface* GameModeInterface = Cast<IYGameModeInterface>(GetWorld()->GetAuthGameMode());
+		if (GameModeInterface)
+		{
+			GameModeInterface->OnPlayerDead();
+		}
 	}
 }
 

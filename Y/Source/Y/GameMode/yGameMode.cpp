@@ -2,6 +2,7 @@
 
 
 #include "GameMode/yGameMode.h"
+#include "Player/yPlayerController.h"
 
 AyGameMode::AyGameMode()
 {
@@ -18,5 +19,46 @@ AyGameMode::AyGameMode()
 		PlayerControllerClass = PlayerControllerClassRef.Class;
 
 	}
-};
+
+	ClearScore = 3;
+	CurrentScore = 0;
+	bIsCleared = false;
+}
+void AyGameMode::OnPlayerScoreChanged(int32 Score)
+{
+	CurrentScore = Score;
+
+	AyPlayerController* PlayerController = Cast<AyPlayerController>(GetWorld()->GetFirstPlayerController());
+	if (PlayerController)
+	{
+		PlayerController->GameScoreChanged(CurrentScore);
+	}
+
+	if (CurrentScore >= ClearScore)
+	{
+		bIsCleared = true;
+
+		if (PlayerController)
+		{
+			PlayerController->GameCleared();
+		}
+	
+	}
+	
+}
+
+void AyGameMode::OnPlayerDead()
+{
+	AyPlayerController* PlayerController = Cast<AyPlayerController>(GetWorld()->GetFirstPlayerController());
+	if (PlayerController)
+	{
+		PlayerController->GameOver();
+	}
+}
+
+bool AyGameMode::IsGameCleared()
+{
+	return bIsCleared;
+}
+;
 	

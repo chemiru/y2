@@ -7,12 +7,13 @@
 #include "Components/StaticMeshComponent.h"
 #include "Physics/ABCollision.h"
 #include "Character/yNpc.h"
-#include "Engine/World.h" // 이미 포함되어 있음
-#include "Engine/EngineTypes.h" // 이미 포함되어 있음
-#include "CollisionQueryParams.h" // 추가 필요
-#include "WorldCollision.h" // FOverlapResult 정의
+#include "Engine/World.h" 
+#include "Engine/EngineTypes.h" 
+#include "CollisionQueryParams.h" 
+#include "WorldCollision.h" // FOverlapResult 
 #include "Engine/OverlapResult.h"
 #include "Item/ABItemBox.h"
+#include "Interface/YGameModeInterface.h"
 
 // Sets default values
 AStageGimmick::AStageGimmick()
@@ -231,6 +232,15 @@ void AStageGimmick::SetChooseNext()
 
 void AStageGimmick::OnOpponentDestroyed(AActor* DestroyedActor)
 {
+	IYGameModeInterface* GameModeInterface = Cast<IYGameModeInterface>(GetWorld()->GetAuthGameMode());
+	if (GameModeInterface)
+	{
+		GameModeInterface->OnPlayerScoreChanged(CurrentStageNum);
+		if (GameModeInterface->IsGameCleared())
+		{
+			return;
+		}
+	}
 	SetState(EStageState::Reward);
 }
 

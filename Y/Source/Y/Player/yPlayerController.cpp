@@ -13,6 +13,18 @@ AyPlayerController::AyPlayerController()
 	}
 }
 
+void AyPlayerController::GameScoreChanged(int32 Score)
+{
+}
+
+void AyPlayerController::GameCleared()
+{
+}
+
+void AyPlayerController::GameOver()
+{
+}
+
 void AyPlayerController::BeginPlay()
 {
 	Super::BeginPlay();

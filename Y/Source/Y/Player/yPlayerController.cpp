@@ -15,14 +15,17 @@ AyPlayerController::AyPlayerController()
 
 void AyPlayerController::GameScoreChanged(int32 Score)
 {
+	K2_OnScoreChanged(Score);
 }
 
 void AyPlayerController::GameCleared()
 {
+	K2_OnGameClear();
 }
 
 void AyPlayerController::GameOver()
 {
+	K2_OnGameOver();
 }
 
 void AyPlayerController::BeginPlay()

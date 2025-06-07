@@ -17,6 +17,14 @@ class Y_API AyPlayerController : public APlayerController
 public:
 	AyPlayerController();
 
+	UFUNCTION(BlueprintImplementableEvent, Category = Game, Meta = (DisplayName = "K2_OnScoreChanged"))
+	void K2_OnScoreChanged(int32 Score);
+	UFUNCTION(BlueprintImplementableEvent, Category = Game, Meta = (DisplayName = "K2_OnGameClear"))
+	void K2_OnGameClear();
+	UFUNCTION(BlueprintImplementableEvent, Category = Game, Meta = (DisplayName = "K2_OnGameOver"))
+	void K2_OnGameOver();
+
+
 	void GameScoreChanged(int32 Score);
 	void GameCleared();
 	void GameOver();
